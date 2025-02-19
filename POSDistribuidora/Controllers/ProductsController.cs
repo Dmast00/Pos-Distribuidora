@@ -35,5 +35,26 @@ namespace POSDistribuidora.Controllers
                 .Commit();
             return View();
         }
+
+
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+            var product = _unitOfWork.ProductRepository.Get(id);
+            var productVariant = _unitOfWork.ProductVariantRepository.GetAll().FirstOrDefault(x => x.ProductId == product.Id);
+            product.ProductVariant = productVariant;
+            return View(product);
+        }
+
+        [HttpPost]
+        public IActionResult Update(Product entity)
+        {
+            _unitOfWork.ProductRepository.Update(entity);
+            _unitOfWork.Commit();
+
+            _unitOfWork.ProductVariantRepository.Update(entity.ProductVariant);
+            _unitOfWork.Commit();
+            return RedirectToAction("Index");
+        }
     }
 }

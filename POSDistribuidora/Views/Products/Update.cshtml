@@ -1,0 +1,91 @@
+﻿@model POSDistribuidora.Domain.Models.Product
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h1>Update</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Update" >
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Sku" class="control-label"></label>
+                <input asp-for="Sku" class="form-control" />
+                <span asp-validation-for="Sku" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RetailPrice" class="control-label"></label>
+                <input asp-for="RetailPrice" class="form-control" />
+                <span asp-validation-for="RetailPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WholeSalePrice" class="control-label"></label>
+                <input asp-for="WholeSalePrice" class="form-control" />
+                <span asp-validation-for="WholeSalePrice" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HasDiscount" /> @Html.DisplayNameFor(model => model.HasDiscount)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HasProductVariant" /> @Html.DisplayNameFor(model => model.HasProductVariant)
+                </label>
+            </div>
+            @if(Model.ProductVariant != null)
+            {
+                <input type="hidden" class="form-control" asp-for="ProductVariant.Id" id="variantId" />
+                <div class="mb-3">
+                    <input class="form-control" asp-for="ProductVariant.UnitOfMeasure" id="unitOfMeasure" />
+                    @Html.DisplayNameFor(model => model.ProductVariant.UnitOfMeasure)
+                    <label class="form-label"></label>
+
+                    <input class="form-control" asp-for="ProductVariant.ConversionFactor" id="conversionFactor" />
+                    @Html.DisplayNameFor(model => model.ProductVariant.ConversionFactor)
+                    <label class="form-label"></label>
+
+                    <input class="form-control" asp-for="ProductVariant.Price" id="price" />
+                    @Html.DisplayNameFor(model => model.ProductVariant.Price)
+                    <label class="form-label"></label>
+                </div>
+            }
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="CanBeSoldByPackage" /> @Html.DisplayNameFor(model => model.CanBeSoldByPackage)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnitsPerPackage" class="control-label"></label>
+                <input asp-for="UnitsPerPackage" class="form-control" />
+                <span asp-validation-for="UnitsPerPackage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

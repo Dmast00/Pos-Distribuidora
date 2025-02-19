@@ -46,7 +46,7 @@
         <label class="form-check-label" for="hasProductVariant">Has Product Variant</label>
     </div>
     
-    <div class="mb-3">
+    <div class="mb-3" id="has__product__variant__container">
         <label id="unit_of_measure" class="form-label">Unit of Measure</label>
         <input type="text" class="form-control" id="unit_of_measure" placeholder="Unit of Measure" asp-for="ProductVariant.UnitOfMeasure" />
 
@@ -79,12 +79,16 @@
 <script>
     $(document).ready(function () {
         const has_Product_Discount = $('#hasDiscount');
-        const has_Product_Variant = document.getElementById("hasProductVariant");
-        const can_Be_Sold_By_Package = document.getElementById("canBeSoldByPackage");
         const discount_amount_container = $('#discount__amount_container')
+
+        const has_Product_Variant = $('#hasProductVariant');
+        const has_Product_Variant_Container = $('#has__product__variant__container')
+
+        const can_Be_Sold_By_Package = document.getElementById("canBeSoldByPackage");
 
 
         discount_amount_container.hide();
+        has_Product_Variant_Container.hide();
 
         function toggleHasDiscountContainer(){
             if (has_Product_Discount.is(':checked')) {
@@ -95,11 +99,22 @@
                 
             }
         }
-
+        function toggleHasProductVariantContainer(){
+            if (has_Product_Variant.is(':checked')) {
+                has_Product_Variant_Container.show();
+            }
+            else{
+                has_Product_Variant_Container.hide();
+            }
+        }
 
 
         has_Product_Discount.on('change', function () {
             toggleHasDiscountContainer();
+        });
+
+        has_Product_Variant.on('change', function () {
+            toggleHasProductVariantContainer();
         });
 
 
