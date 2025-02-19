@@ -1,0 +1,76 @@
+﻿@using POSDistribuidora.Domain.Models.ViewModels
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    @model SaleDetailsViewmodel;
+}
+<div class="container">
+    <div class="row">
+        <!-- Columna de productos -->
+        <div class="col-md-6">
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">
+                @foreach (var item in ViewBag.Products)
+                {
+                    <div class="col">
+                        <div class="border border-dark shadow-sm p-3 text-wrap pe-auto product__item" title="@item.Name" id="@item.Id">
+                            @item.Name
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Columna de detalles de venta -->
+        <div class="col-md-6">
+            <form method="post" asp-action="CreateSale">
+                <div class="border border-dark p-3" >
+                    <h1>Sale Details</h1>
+                    <div class="col sale__details" id="sale__details">
+
+
+                    </div>
+                </div>
+            
+                <div class="row">
+                    <div>
+                        <button class="btn btn-primary">
+                            Finish
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>  
+    </div>
+</div>
+
+<style>
+    .product__item {
+        cursor: pointer;
+        text-align: center;
+    }
+
+        .product__item:hover {
+            box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+        }
+</style>
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.product__item').on('click', function () {
+            let productName = $(this).attr("title");
+            let productId = $(this).attr("id");
+            var input = document.createElement('input');
+            input.type = "hidden";
+            input.name = "ProductsId";
+            input.value = productId;
+            $('#sale__details').append(input);
+            $('#sale__details').append(`<div class="sale-item">${productName}</div>`);
+        });
+    });
+</script>

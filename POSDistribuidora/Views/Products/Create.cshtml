@@ -1,0 +1,54 @@
+﻿@*
+
+*@
+@model POSDistribuidora.Domain.Models.Product
+@{
+}
+<form method="post">
+    <div class="mb-3">
+        <label for="sku" class="form-label">SKU</label>
+        <input type="text" class="form-control" id="sku" asp-for="Sku" placeholder="Sku">
+    </div>
+
+    <div class="mb-3">
+        <label for="name" class="form-label">Product Name</label>
+        <input type="text" class="form-control" id="name" asp-for="Name" placeholder="Product Name">
+    </div>
+
+    <div class="mb-3">
+        <label for="description" class="form-label">Product Description</label>
+        <input type="text" class="form-control" id="description" asp-for="Description" placeholder="Product Description">
+    </div>
+
+    <div class="mb-3">
+        <label for="wholeSalePrice" class="form-label">Wholesale Price</label>
+        <input type="number" step="0.01" class="form-control" id="wholeSalePrice" asp-for="WholeSalePrice" placeholder="Wholesale Price">
+    </div>
+
+    <div class="mb-3">
+        <label for="retailPrice" class="form-label">Retail Price</label>
+        <input type="number" step="0.01" class="form-control" id="retailPrice" asp-for="RetailPrice" placeholder="Retail Price">
+    </div>
+
+    <div class="form-check mb-3">
+        <input type="checkbox" class="form-check-input" id="hasDiscount" asp-for="HasDiscount">
+        <label class="form-check-label" for="hasDiscount">Has Discount</label>
+    </div>
+
+    <div class="form-check mb-3">
+        <input type="checkbox" class="form-check-input" id="hasProductVariant" asp-for="HasProductVariant">
+        <label class="form-check-label" for="hasProductVariant">Has Product Variant</label>
+    </div>
+
+    <div class="form-check mb-3">
+        <input type="checkbox" class="form-check-input" id="canBeSoldByPackage" asp-for="CanBeSoldByPackage">
+        <label class="form-check-label" for="canBeSoldByPackage">Can Be Sold By Package</label>
+    </div>
+
+    <div class="mb-3">
+        <label for="unitsPerPackage" class="form-label">Units Per Package</label>
+        <input type="number" class="form-control" id="unitsPerPackage" asp-for="UnitsPerPackage" placeholder="Units Per Package">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
