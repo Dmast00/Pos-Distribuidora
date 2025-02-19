@@ -22,7 +22,8 @@ jobs:
       - name: Publish app
         run: dotnet publish -c Release -o ./publish
       - name: Send notification to Discord
-        env: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: >
           curl -H "Content-Type: application/json" \
 
