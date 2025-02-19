@@ -12,8 +12,8 @@ using POSDistribuidora.Data;
 namespace POSDistribuidora.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250212204020_initialMigration")]
-    partial class initialMigration
+    [Migration("20250219211945_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -297,7 +297,10 @@ namespace POSDistribuidora.Migrations
             modelBuilder.Entity("POSDistribuidora.Domain.Models.ProductVariant", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("ConversionFactor")
                         .HasColumnType("int");
@@ -313,6 +316,9 @@ namespace POSDistribuidora.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProductId")
+                        .IsUnique();
 
                     b.ToTable("ProductVariant");
                 });
@@ -351,7 +357,6 @@ namespace POSDistribuidora.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("ProductVariantId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
@@ -439,8 +444,8 @@ namespace POSDistribuidora.Migrations
             modelBuilder.Entity("POSDistribuidora.Domain.Models.ProductVariant", b =>
                 {
                     b.HasOne("POSDistribuidora.Domain.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("Id")
+                        .WithOne("ProductVariant")
+                        .HasForeignKey("POSDistribuidora.Domain.Models.ProductVariant", "ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -457,9 +462,7 @@ namespace POSDistribuidora.Migrations
 
                     b.HasOne("POSDistribuidora.Domain.Models.ProductVariant", "ProductVariant")
                         .WithMany()
-                        .HasForeignKey("ProductVariantId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductVariantId");
 
                     b.HasOne("POSDistribuidora.Domain.Models.Sale", "Sale")
                         .WithMany("SaleDetails")
@@ -472,6 +475,12 @@ namespace POSDistribuidora.Migrations
                     b.Navigation("ProductVariant");
 
                     b.Navigation("Sale");
+                });
+
+            modelBuilder.Entity("POSDistribuidora.Domain.Models.Product", b =>
+                {
+                    b.Navigation("ProductVariant")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("POSDistribuidora.Domain.Models.Sale", b =>

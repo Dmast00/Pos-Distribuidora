@@ -260,3 +260,4 @@ C:\Users\ObedH\source\repos\POSDistribuidora\POSDistribuidora\obj\Debug\net6.0\r
 C:\Users\ObedH\source\repos\POSDistribuidora\POSDistribuidora\obj\Debug\net6.0\POSDistribuidora.pdb
 C:\Users\ObedH\source\repos\POSDistribuidora\POSDistribuidora\obj\Debug\net6.0\POSDistribuidora.genruntimeconfig.cache
 C:\Users\ObedH\source\repos\POSDistribuidora\POSDistribuidora\obj\Debug\net6.0\ref\POSDistribuidora.dll
+C:\Users\ObedH\source\repos\POSDistribuidora\POSDistribuidora\obj\Debug\net6.0\POSDistribuidora.sourcelink.json

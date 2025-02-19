@@ -34,6 +34,7 @@ namespace POSDistribuidora.Domain.Models
 
         [Required]
         public bool HasProductVariant { get; set; }
+        public virtual ProductVariant ProductVariant { get; set; }
 
         [Required]
         public bool CanBeSoldByPackage { get; set; } 

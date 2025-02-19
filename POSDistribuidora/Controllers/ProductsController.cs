@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using POSDistribuidora.Application.Interfaces;
 using POSDistribuidora.Domain.Interfaces;
 using POSDistribuidora.Domain.Models;
 
@@ -7,13 +8,16 @@ namespace POSDistribuidora.Controllers
     public class ProductsController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        public ProductsController(IUnitOfWork unitOfWork)
+        private readonly IProductBuilder _productBuilder;
+        public ProductsController(IUnitOfWork unitOfWork,IProductBuilder productBuilder)
         {
             _unitOfWork = unitOfWork;
+            _productBuilder = productBuilder;
         }
         public IActionResult Index()
         {
-            return View();
+            List<Product> product = _unitOfWork.ProductRepository.GetAll();
+            return View(product);
         }
 
         [HttpGet]
@@ -25,8 +29,10 @@ namespace POSDistribuidora.Controllers
         [HttpPost]
         public IActionResult Create(Product entity)
         {
-            _unitOfWork.ProductRepository.Add(entity);
-            _unitOfWork.Commit();
+            _productBuilder
+                .AddProduct(entity)
+                .HasProductVariant()
+                .Commit();
             return View();
         }
     }
