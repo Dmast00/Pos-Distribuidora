@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("POSDistribuidora")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7dd053aff9c523604a8352db3bd2fd603400da8c")]
 [assembly: System.Reflection.AssemblyProductAttribute("POSDistribuidora")]
 [assembly: System.Reflection.AssemblyTitleAttribute("POSDistribuidora")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
